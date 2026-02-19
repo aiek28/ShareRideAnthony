@@ -7,14 +7,33 @@ public class Car {
     private int currStation;
     private int maxSeats;
     private int direction;
-    private ArrayList<Person> people;
-    
+    private ArrayList<Person> passengers;
+
     // constructor
-    public car(int startPos, int endDestination){
+    public Car(int startPos, int endDestination){
         seatsOccupied = 0;
         maxSeats = 3;
         currStation = startPos;
         destination = endDestination;
+        if (startPos > endDestination){
+            direction = -1;
+        }
+        else{
+            direction = 1;
+        }
+        ArrayList<Person> passengers = new ArrayList<>();
+    }
+
+    public void move() {
+        currStation = currStation + direction;
+    }
+
+    public int getStation(){
+        return currStation;
+    }
+
+    public void addPerson(Person person){
+        passengers.add(person);
     }
 
 }
