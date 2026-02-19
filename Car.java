@@ -21,7 +21,7 @@ public class Car {
         else{
             direction = 1;
         }
-        ArrayList<Person> passengers = new ArrayList<>();
+        passengers = new ArrayList<Person>();
     }
 
     public void move() {
@@ -36,8 +36,11 @@ public class Car {
         passengers.add(person);
     }
 
-    public void dropPerson(Person person){
-        
+    public void HandlePerson(Person person){
+        for (Person p: passengers){
+            if (p.getID() == person.getID()){
+                
+            }
+        }
     }
-
 }
