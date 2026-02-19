@@ -32,8 +32,12 @@ public class Car {
         return currStation;
     }
 
-    public void addPerson(Person person){
+    public void addPerson(Person person){ //planning to loop through people at station and see if they are in the spot
         passengers.add(person);
+    }
+
+    public void dropPerson(Person person){
+        
     }
 
 }
