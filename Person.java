@@ -39,6 +39,10 @@ public class Person {
         return direction;
     }
 
+    public int getID(){
+        return idNo;
+    }
+
     public String toString(){
         return "id Number: " + idNo + " Arrived: " + arrived;
     }
