@@ -2,6 +2,7 @@ public class Person {
     int start;
     int destination;
     int idNo;
+    int direction;
     boolean arrived;
     private static int idGen = 1;
     
@@ -17,6 +18,13 @@ public class Person {
         idNo = idGen;
         arrived = false;
         idGen++;
+
+        if (myStart > myDestination){
+            direction = -1;
+        }
+        else{
+            direction = 1;
+        }
     }
 
     public int getStart(){
