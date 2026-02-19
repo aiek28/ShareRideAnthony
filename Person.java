@@ -18,6 +18,15 @@ public class Person {
         arrived = false;
         idGen++;
     }
+
+    public int getStart(){
+        return start;
+    }
+
+    public int getDestination(){
+        return destination;
+    }
+
     public String toString(){
         return "id Number: " + idNo + " Arrived: " + arrived;
     }
