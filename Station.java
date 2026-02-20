@@ -7,34 +7,35 @@ public class Station {
     private ArrayList<Car> carWaiting;
     private ArrayList<Car> carArrived;
     private int idNo;
-    private static int idGen=0;
+    private static int idGen = 0;
 
-    public Station(){
+    public Station() {
         peopleWaiting = new ArrayList<Person>();
         peopleArrived = new ArrayList<Person>();
         carWaiting = new ArrayList<Car>();
         carArrived = new ArrayList<Car>();
         int idNo = idGen;
-        idGen ++;
+        idGen++;
     }
-    
-    public void dropPassengers(){
-        for (Car car: carWaiting){
+
+    public void dropPassengers() {
+        for (Car car : carWaiting) {
             ArrayList<Person> droppedPeople; // getting the list returned from dropPerson function in car class
 
             ArrayList<Person> passengers = car.getPassengers(); // getting all the passengers in one car
-            for (Person person: passengers){ //getting all passengers in the car
-                if (person.getDestination() == idNo){ //seeing if their destination is equal to the station
-                    droppedPeople = car.dropPerson(person); //dropping person
-                    for (Person p: droppedPeople){
+            for (Person person : passengers) { // getting all passengers in the car
+                if (person.getDestination() == idNo) { // seeing if their destination is equal to the station
+                    droppedPeople = car.dropPerson(person); // dropping person
+                    for (Person p : droppedPeople) {
                         peopleArrived.add(p);
                     }
-                }
-                else if (car.getCurrStation() == car.getDestination()){ // if car has reached destination
+                } else if (car.getCurrStation() == car.getDestination()) { // if car has reached destination
                     droppedPeople = car.dropPerson(person);
-                    for (Person p: droppedPeople){
-                        if (car.getCurrStation() == p.getDestination()){ // the 
-                            
+                    for (Person p : droppedPeople) {
+                        if (car.getCurrStation() == p.getDestination()) {
+                            peopleArrived.add(p);
+                        } else {
+                            peopleWaiting.add(p);
                         }
                     }
                 }
@@ -43,7 +44,7 @@ public class Station {
 
     }
 
-    public void takePassengers(){
+    public void takePassengers() {
 
     }
 }
