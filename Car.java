@@ -28,19 +28,33 @@ public class Car {
         currStation = currStation + direction;
     }
 
-    public int getStation(){
+    public ArrayList<Person> getPassengers(){
+        return passengers;
+    }
+
+    public int getCurrStation(){
         return currStation;
+    }
+
+    public int getDestination(){
+        return destination;
     }
 
     public void addPerson(Person person){ //planning to loop through people at station and see if they are in the spot
         passengers.add(person);
     }
 
-    public void HandlePerson(Person person){
-        for (Person p: passengers){
-            if (p.getID() == person.getID()){
-                
-            }
+
+    public ArrayList<Person> dropPerson(Person person){ 
+        ArrayList<Person> droppedPeople = new ArrayList<Person>();
+        for (Person p: passengers){ // drop 
+            droppedPeople.add(p);
+            passengers.remove(p);
         }
+
+        return droppedPeople;
     }
 }
+
+
+
