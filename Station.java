@@ -20,23 +20,13 @@ public class Station {
 
     public void dropPassengers() {
         for (Car car : carWaiting) {
-            ArrayList<Person> droppedPeople; // getting the list returned from dropPerson function in car class
-
             ArrayList<Person> passengers = car.getPassengers(); // getting all the passengers in one car
-            for (Person person : passengers) { // getting all passengers in the car
-                if (person.getDestination() == idNo) { // seeing if their destination is equal to the station
-                    droppedPeople = car.dropPerson(person); // dropping person
-                    for (Person p : droppedPeople) {
-                        peopleArrived.add(p);
-                    }
+            for (Person p : passengers) { // getting all passengers in the car
+                if (p.getDestination() == idNo) { // seeing if their destination is equal to the station
+                    peopleArrived.add(car.dropPerson(p)); //dropping person from car and adding it to station
                 } else if (car.getCurrStation() == car.getDestination()) { // if car has reached destination
-                    droppedPeople = car.dropPerson(person);
-                    for (Person p : droppedPeople) {
-                        if (car.getCurrStation() == p.getDestination()) {
-                            peopleArrived.add(p);
-                        } else {
-                            peopleWaiting.add(p);
-                        }
+                    for (Person pWait: passengers){
+                        peopleWaiting.add(car.dropPerson(pWait));
                     }
                 }
             }
