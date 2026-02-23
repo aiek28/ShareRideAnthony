@@ -36,6 +36,10 @@ public class Car {
         return currStation;
     }
 
+    public int getDirection(){
+        return direction;
+    }
+
     public int getDestination(){
         return destination;
     }
