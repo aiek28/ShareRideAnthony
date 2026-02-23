@@ -44,8 +44,13 @@ public class Car {
         return destination;
     }
 
+    public boolean hasSpace(){
+        return maxSeats > seatsOccupied;
+    }
+
     public void addPerson(Person person){ //planning to loop through people at station and see if they are in the spot
         passengers.add(person);
+        seatsOccupied ++;
     }
 
 
@@ -53,6 +58,7 @@ public class Car {
         for (Person p: passengers){ // looping through the people in passengers and dropping them
             if (p.getID() == person.getID()){ 
                 passengers.remove(p);
+                seatsOccupied--;
                 return p;
             }
         }
