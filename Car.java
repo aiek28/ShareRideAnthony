@@ -55,14 +55,16 @@ public class Car {
 
 
     public Person dropPerson(Person person){ 
-        for (Person p: passengers){ // looping through the people in passengers and dropping them
-            if (p.getID() == person.getID()){ 
-                passengers.remove(p);
+        Iterator<Person> it = passengers.iterator(); // makes it safe to delete person
+        while (it.hasNext()){ // looping through passengers and removing them if they are the person that must be dropped off
+            Person p = it.next();
+            if (p.getID() == person.getID()){
+                it.remove(); // auto removes p
                 seatsOccupied--;
                 return p;
             }
         }
-        return null; 
+        return null; // if p is not found 
     }
 }
 
