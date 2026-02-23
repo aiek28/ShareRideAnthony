@@ -35,6 +35,15 @@ public class Station {
     }
 
     public void takePassengers() {
-
+        for (Car car: carWaiting){
+            Iterator<Person> it = peopleWaiting.iterator();
+            while (it.hasNext()){ // allows us to loop through peopleWaiting while also deleting them once they board a car
+                Person p = it.next();
+                if (car.hasSpace() && (p.getDirection() == car.getDirection())){ // if has space and going in the same direction
+                    it.remove();
+                    car.addPerson(p);
+                }
+            }
+        }
     }
 }
