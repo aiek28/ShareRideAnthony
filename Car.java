@@ -45,14 +45,14 @@ public class Car {
     }
 
 
-    public ArrayList<Person> dropPerson(Person person){ 
-        ArrayList<Person> droppedPeople = new ArrayList<Person>();
-        for (Person p: passengers){ // drop 
-            droppedPeople.add(p);
-            passengers.remove(p);
+    public Person dropPerson(Person person){ 
+        for (Person p: passengers){ // looping through the people in passengers and dropping them
+            if (p.getID() == person.getID()){ 
+                passengers.remove(p);
+                return p;
+            }
         }
-
-        return droppedPeople;
+        return null; 
     }
 }
 
