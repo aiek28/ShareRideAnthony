@@ -4,7 +4,7 @@ public class Person {
     int idNo;
     int direction;
     boolean arrived;
-    private static int idGen = 1;
+    private static int idGen = 0;
     
     /**
      * Create Person. Random values can be fed through the simulator.
