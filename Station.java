@@ -26,6 +26,7 @@ public class Station {
                     peopleArrived.add(car.dropPerson(p)); //dropping person from car and adding it to station
                 } else if (car.getCurrStation() == car.getDestination()) { // if car has reached destination
                     for (Person pWait: passengers){
+                        carArrived.add(car);
                         peopleWaiting.add(car.dropPerson(pWait));
                     }
                 }
@@ -45,5 +46,13 @@ public class Station {
                 }
             }
         }
+    }
+
+    public void addCarsWaiting(Car car){ // adds cars when you build the station
+        carWaiting.add(car);
+    }
+
+    public void addPassengerWaiting(Person person){
+        peopleWaiting.add(person);
     }
 }
