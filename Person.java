@@ -43,6 +43,14 @@ public class Person {
         return idNo;
     }
 
+    public void setArrived(){
+        arrived = true;
+    }
+
+    public boolean hasArrived(){
+        return arrived;
+    }
+
     public String toString(){
         return "id Number: " + idNo + " Arrived: " + arrived;
     }
