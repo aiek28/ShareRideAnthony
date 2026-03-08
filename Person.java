@@ -1,9 +1,9 @@
 public class Person {
-    int start;
-    int destination;
-    int idNo;
-    int direction;
-    boolean arrived;
+    private int start;
+    private int destination;
+    private int idNo;
+    private int direction;
+    private boolean arrived;
     private static int idGen = 0;
     
     /**
