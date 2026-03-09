@@ -130,7 +130,7 @@ public class Road {
 
     public String toString() {
         String s = "Current Iterator: ";
-        s = s + iterator;
+        s = s + iterator + "\n";
 
         for (Station station : stations) { // looping through each station
             s = s + station.toString(); // printing out their toString()
