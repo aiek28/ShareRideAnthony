@@ -57,6 +57,10 @@ public class Car {
     public int getID(){
         return idNo;
     }
+    
+    public static void resetIDGen() {
+        idGen = 0;
+    }
 
     public void addPerson(Person person){ //planning to loop through people at station and see if they are in the spot
         if (hasSpace()){

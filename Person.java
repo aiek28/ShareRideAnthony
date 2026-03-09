@@ -51,6 +51,10 @@ public class Person {
         return arrived;
     }
 
+    public static void resetIDGen() {
+        idGen = 0;
+    }
+
     public String toString(){
         return "id Number: " + idNo + " Arrived: " + arrived;
     }

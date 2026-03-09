@@ -17,6 +17,10 @@ public class Station {
     public int getID(){ 
         return idNo;
     }
+    
+    public static void resetIDGen() {
+        idGen = 0;
+    }
 
     public ArrayList<Person> getPeopleWaiting(){
         return peopleWaiting;
