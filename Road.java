@@ -65,7 +65,7 @@ public class Road {
 
                 Station currentStation = stations[car.getCurrStation()];
 
-                dropPotentialPassenger(car, currentStation);
+                dropPotentialPassengers(car, currentStation);
 
                 if (car.hasArrived()){
                     unloadRemainingPassenger(car, currentStation);
@@ -73,13 +73,15 @@ public class Road {
                     carsTraveling.remove(i);
                 }
                 else {
-                    System.out.println("");
+                    pickUpPassengers(car, currentStation);
+                    car.move();
                 }
             }
             iterator ++;
     }
+    }
 
-    public void dropPotentialPassenger(Car car, Station station) { // looping backwards to prevent skipping a person when removing
+    public void dropPotentialPassengers(Car car, Station station) { // looping backwards to prevent skipping a person when removing
         ArrayList<Person> passengers = car.getPassengers(); //creating a refrence of passengers list 
 
         for (int i = passengers.size() - 1; i >=0; i--) {
@@ -89,6 +91,7 @@ public class Road {
                 p.setArrived();
                 Person removed = car.dropPerson(i);
                 station.addPassengerArrived(removed);
+                peopleArrived.add(removed);
                 peopleTraveling.remove(removed);
             }
         }
@@ -100,7 +103,7 @@ public class Road {
         for (int i = passengers.size() - 1; i >=0; i--){
             Person removed = car.dropPerson(i);
 
-            if (removed.getDestiantion() == station.getID()){ // if car unloading destination is also person's final destination
+            if (removed.getDestination() == station.getID()){ // if car unloading destination is also person's final destination
                 removed.setArrived(); // set person has arrived
                 station.addPassengerArrived(removed);
                 peopleArrived.add(removed);
@@ -108,6 +111,19 @@ public class Road {
             }
             else { // if they didn't arrive when the car arrived to its finald estination
                 station.addPassengerWaiting(removed);
+            }
+        }
+    }
+
+    public void pickUpPassengers(Car car, Station station) {
+        ArrayList<Person> waiting = station.getPeopleWaiting(); // refrence (see above comments)
+        
+        for (int i = waiting.size()-1; i >= 0; i--){
+            Person p = waiting.get(i);
+            
+            if (car.hasSpace() && (p.getDirection() == car.getDirection())){
+                car.addPerson(p);
+                waiting.remove(i);
             }
         }
     }
@@ -122,5 +138,4 @@ public class Road {
         }
         return s;
     }
-}
 }
