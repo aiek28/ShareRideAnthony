@@ -7,6 +7,8 @@ public class Car {
     private int maxSeats;
     private int direction;
     private ArrayList<Person> passengers;
+    private int idNo;
+    private static int idGen = 0;
 
     // constructor
     public Car(int startPos, int endDestination){
@@ -20,9 +22,11 @@ public class Car {
             direction = 1;
         }
         passengers = new ArrayList<Person>();
+        idNo = idGen;
+        idGen ++;
     }
 
-    public Boolean hasArrived(){
+    public boolean hasArrived(){
         return currStation == destination;
     }
 
@@ -50,6 +54,10 @@ public class Car {
         return maxSeats > passengers.size();
     }
 
+    public int getID(){
+        return idNo;
+    }
+
     public void addPerson(Person person){ //planning to loop through people at station and see if they are in the spot
         if (hasSpace()){
             passengers.add(person);
@@ -59,6 +67,14 @@ public class Car {
 
     public Person dropPerson(int index){ 
         return passengers.remove(index);
+    }
+
+    public String toString(){
+        return "Car ID: " + idNo +
+        ", Current Station: " + currStation +
+        ", destination " + destination +
+        ", direction " + direction +
+        ", passengers: " + passengers.size();
     }
 }
 
