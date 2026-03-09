@@ -132,6 +132,19 @@ public class Road {
         String s = "Current Iterator: ";
         s = s + iterator + "\n";
 
+        s += "Cars Traveling: \n";
+        for (Car car : carsTraveling){
+            s += car.toString() + "\n";
+        }
+
+        s += "Cars Arrived: \n";
+        for (Car car: carsArrived){
+            s += car.toString() + "\n";
+        }
+
+        s += "Number of People Traveling: " + peopleTraveling.size() + "\n";
+        s += "People Arrived:" + peopleArrived.size() + "\n";
+
         for (Station station : stations) { // looping through each station
             s = s + station.toString(); // printing out their toString()
             s = s + "\n";
