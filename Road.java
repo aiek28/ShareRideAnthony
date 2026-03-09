@@ -37,12 +37,7 @@ public class Road {
             }
 
             Car car = new Car(startPos, endPos);
-
-            int randNum = (int) (Math.random() * numStations); // creating random number to assign into the train
-            Station stationToAddCar = stations[randNum];
-
-            stationToAddCar.addCarsWaiting(car); // adding car to the station
-            carTraveling.add(car); // adding car to Traveling ArrayList
+            carsTraveling.add(car); // adding car to Traveling ArrayList
         }
     }
 
