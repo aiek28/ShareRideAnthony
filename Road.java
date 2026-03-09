@@ -59,13 +59,13 @@ public class Road {
     }
 
     public void runRoad() {
-        while (carTraveling.size() != 0) { // if there are still cars traveling
-            for (Station s: stations){ // looping through stations 
-                s.takePassengers(); // taking the passengers
-                s.dropPassengers(); // dropping the passengers
-                s.stationMove(); // moving
+        while (carsTraveling.size() > 0) { // if there are still cars traveling
+            for (int i = carsTraveling.size() - 1; i >=0; i--){ // looping backwards
+                Car car = carsTraveling.get(i);
+                
+                Station currentStation = stations[car.getCurrStation()];
+
             }
-            iterator ++;
     }
 
     public String toString() {
