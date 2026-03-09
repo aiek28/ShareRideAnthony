@@ -151,4 +151,12 @@ public class Road {
         }
         return s;
     }
+
+    public double getPercentArrived(){
+        int totalPeople = peopleArrived.size() + peopleTraveling.size();
+        if (totalPeople == 0){
+            return 0.0;
+        }
+        return 100.0 * peopleArrived.size() / totalPeople;
+    }
 }
