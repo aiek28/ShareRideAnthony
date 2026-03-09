@@ -2,48 +2,88 @@ import java.util.*;
 
 public class Road {
     private Station[] stations;
+    private ArrayList<Car> carsTraveling;
+    private ArrayList<Car> carsArrived;
+    private ArrayList<Person> peopleTraveling;
+    private ArrayList<Person> peopleArrived;
     private int numStations;
-    
-    public void populateStations(int num){ // populate station with s
+    private static int iterator;
+
+    public Road(){
+        carsTraveling = new ArrayList<Car>();
+        carsArrived = new ArrayList<Car>();
+        peopleTraveling = new ArrayList<Person>();
+        peopleArrived = new ArrayList<Person>();
+        iterator = 0;
+    }   
+
+    public void populateStations(int num) { // populate station with s
         numStations = num;
-        for (int i=0; i < numStations; i++){
-            Station s = new Station();
-            stations[i] = s;
+        stations = new Station[numStations]; // creating new Station that is 32 long
+        
+        for (int i = 0; i < numStations; i++) {
+            stations[i] = new Station(); // adding the stations
         }
     }
-    public void populateCars(int numCars){
-        for (int i = 0; i < numCars; i++){ // creating the each car
+
+    public void populateCars(int numCars) {
+        for (int i = 0; i < numCars; i++) { // creating the each car
             // creating start and end position of car
             int startPos = (int)(Math.random() * numStations);
             int endPos = (int)(Math.random() * numStations);
-            while (startPos == endPos){ // prevent start == end 
+
+            while (startPos == endPos) { // prevent start == end
                 endPos = (int)(Math.random() * numStations);
             }
 
             Car car = new Car(startPos, endPos);
 
-            int randNum = (int)(Math.random() * numStations); // creating random number to assign into the train
+            int randNum = (int) (Math.random() * numStations); // creating random number to assign into the train
             Station stationToAddCar = stations[randNum];
 
-            stationToAddCar.addCarsWaiting(car);
+            stationToAddCar.addCarsWaiting(car); // adding car to the station
+            carTraveling.add(car); // adding car to Traveling ArrayList
         }
     }
 
-    public void populatePeople(int numPeople){
-        for (int i = 0; i < numPeople; i++){ // creating the each car
+    public void populatePeople(int numPeople) {
+        for (int i = 0; i < numPeople; i++) { // creating the each car
             // creating start and end position of person
-            int startPos = (int)(Math.random() * numStations);
-            int endPos = (int)(Math.random() * numStations);
-            while (startPos == endPos){ // prevent start == end 
-                endPos = (int)(Math.random() * numStations);
+            int startPos = (int) (Math.random() * numStations);
+            int endPos = (int) (Math.random() * numStations);
+            while (startPos == endPos) { // prevent start == end
+                endPos = (int) (Math.random() * numStations);
             }
 
             Person person = new Person(startPos, endPos);
 
-            int randNum = (int)(Math.random() * numStations); // creating random number to assign into the train
+            int randNum = (int) (Math.random() * numStations); // creating random number to assign into the train
             Station stationToAddCar = stations[randNum];
 
-            stationToAddCar.addPassengerWaiting(person); // 
+            stationToAddCar.addPassengerWaiting(person); //
+            personTraveling.add(person);
         }
+    }
+
+    public void runRoad() {
+        while (carTraveling.size() != 0) { // if there are still cars traveling
+            for (Station s: stations){ // looping through stations 
+                s.takePassengers(); // taking the passengers
+                s.dropPassengers(); // dropping the passengers
+                s.stationMove(); // moving
+            }
+            iterator ++;
+    }
+
+    public String toString() {
+        String s = "Current Iterator: ";
+        s = s + iterator;
+
+        for (Station station : stations) { // looping through each station
+            s = s + station.toString(); // printing out their toString()
+            s = s + "\n";
+        }
+        return s;
+    }
     }
 }
