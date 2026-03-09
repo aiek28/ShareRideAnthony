@@ -44,19 +44,17 @@ public class Road {
     public void populatePeople(int numPeople) {
         for (int i = 0; i < numPeople; i++) { // creating the each car
             // creating start and end position of person
-            int startPos = (int) (Math.random() * numStations);
-            int endPos = (int) (Math.random() * numStations);
+            int startPos = (int)(Math.random() * numStations);
+            int endPos = (int)(Math.random() * numStations);
+
             while (startPos == endPos) { // prevent start == end
-                endPos = (int) (Math.random() * numStations);
+                endPos = (int)(Math.random() * numStations);
             }
 
             Person person = new Person(startPos, endPos);
+            stations[startPos].addPassengerWaiting(person); // adding them to the station
+            peopleTraveling.add(person);  // adding them to Traveling arraylist
 
-            int randNum = (int) (Math.random() * numStations); // creating random number to assign into the train
-            Station stationToAddCar = stations[randNum];
-
-            stationToAddCar.addPassengerWaiting(person); //
-            personTraveling.add(person);
         }
     }
 

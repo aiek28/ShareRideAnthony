@@ -14,7 +14,7 @@ public class Station {
         idGen++;
     }
 
-    public int getID(){
+    public int getID(){ 
         return idNo;
     }
 
