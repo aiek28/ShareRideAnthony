@@ -1,7 +1,7 @@
 public class Tester {
     public static void main (String[] args){
         double totalPercent = 0.0;
-        int trials = 100;
+        int trials = 5000;
 
         for (int i = 1; i <= trials; i++){
             Person.resetIDGen();
