@@ -60,7 +60,7 @@ public class Road {
 
     public void runRoad() {
         while (carsTraveling.size() > 0) { // if there are still cars traveling
-            for (int i = carsTraveling.size() - 1; i >=0; i--){ // looping backwards
+            for (int i = carsTraveling.size() - 1; i >=0; i--){ // looping backwards to prevent potential removal errors
                 Car car = carsTraveling.get(i);
 
                 Station currentStation = stations[car.getCurrStation()];
@@ -68,10 +68,15 @@ public class Road {
                 dropPotentialPassenger(car, currentStation);
 
                 if (car.hasArrived()){
-                    un
+                    unloadRemainingPassenger(car, currentStation);
+                    carsArrived.add(car);
+                    carsTraveling.remove(i);
                 }
-
+                else {
+                    System.out.println("");
+                }
             }
+            iterator ++;
     }
 
     public void dropPotentialPassenger(Car car, Station station) { // looping backwards to prevent skipping a person when removing
