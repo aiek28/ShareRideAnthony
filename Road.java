@@ -62,10 +62,26 @@ public class Road {
         while (carsTraveling.size() > 0) { // if there are still cars traveling
             for (int i = carsTraveling.size() - 1; i >=0; i--){ // looping backwards
                 Car car = carsTraveling.get(i);
-                
+
                 Station currentStation = stations[car.getCurrStation()];
 
+
             }
+    }
+
+    public void dropPotentialPassenger(Car car, Station station) { // looping backwards to prevent skipping a person when removing
+        ArrayList<Person> passengers = car.getPassengers(); // creating refrence (same thing, but just more convenient)
+
+        for (int i = passengers.size() - 1; i >=0; i--) {
+            Person p = passengers.get(i);
+            
+            if (p.getDestination() == station.getID()) { // if person has arrived
+                p.setArrived();
+                Person removed = car.dropPerson(i);
+                station.addPassengerArrived(removed);
+                peopleTraveling.remove(removed);
+            }
+        }
     }
 
     public String toString() {
@@ -78,5 +94,5 @@ public class Road {
         }
         return s;
     }
-    }
+}
 }
