@@ -65,12 +65,17 @@ public class Road {
 
                 Station currentStation = stations[car.getCurrStation()];
 
+                dropPotentialPassenger(car, currentStation);
+
+                if (car.hasArrived()){
+                    un
+                }
 
             }
     }
 
     public void dropPotentialPassenger(Car car, Station station) { // looping backwards to prevent skipping a person when removing
-        ArrayList<Person> passengers = car.getPassengers(); // creating refrence (same thing, but just more convenient)
+        ArrayList<Person> passengers = car.getPassengers(); //creating a refrence of passengers list 
 
         for (int i = passengers.size() - 1; i >=0; i--) {
             Person p = passengers.get(i);
@@ -80,6 +85,24 @@ public class Road {
                 Person removed = car.dropPerson(i);
                 station.addPassengerArrived(removed);
                 peopleTraveling.remove(removed);
+            }
+        }
+    }
+
+    public void unloadRemainingPassenger(Car car, Station station){
+        ArrayList<Person> passengers = car.getPassengers(); // refrence of passengers list
+
+        for (int i = passengers.size() - 1; i >=0; i--){
+            Person removed = car.dropPerson(i);
+
+            if (removed.getDestiantion() == station.getID()){ // if car unloading destination is also person's final destination
+                removed.setArrived(); // set person has arrived
+                station.addPassengerArrived(removed);
+                peopleArrived.add(removed);
+                peopleTraveling.remove(removed);
+            }
+            else { // if they didn't arrive when the car arrived to its finald estination
+                station.addPassengerWaiting(removed);
             }
         }
     }
