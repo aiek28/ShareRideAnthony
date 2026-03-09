@@ -2,7 +2,6 @@ import java.util.*;
 
 public class Car {
     // fields
-    private int seatsOccupied;
     private int destination;
     private int currStation;
     private int maxSeats;
@@ -11,7 +10,6 @@ public class Car {
 
     // constructor
     public Car(int startPos, int endDestination){
-        seatsOccupied = 0;
         maxSeats = 3;
         currStation = startPos;
         destination = endDestination;
@@ -22,6 +20,10 @@ public class Car {
             direction = 1;
         }
         passengers = new ArrayList<Person>();
+    }
+
+    public Boolean hasArrived(){
+        return currStation == destination;
     }
 
     public void move() {
@@ -45,26 +47,18 @@ public class Car {
     }
 
     public boolean hasSpace(){
-        return maxSeats > seatsOccupied;
+        return maxSeats > passengers.size();
     }
 
     public void addPerson(Person person){ //planning to loop through people at station and see if they are in the spot
-        passengers.add(person);
-        seatsOccupied ++;
+        if (hasSpace()){
+            passengers.add(person);
+        }
     }
 
 
-    public Person dropPerson(Person person){ 
-        Iterator<Person> it = passengers.iterator(); // makes it safe to delete person
-        while (it.hasNext()){ // looping through passengers and removing them if they are the person that must be dropped off
-            Person p = it.next();
-            if (p.getID() == person.getID()){
-                it.remove(); // auto removes p
-                seatsOccupied--;
-                return p;
-            }
-        }
-        return null; // if p is not found 
+    public Person dropPerson(int index){ 
+        return passengers.remove(index);
     }
 }
 
